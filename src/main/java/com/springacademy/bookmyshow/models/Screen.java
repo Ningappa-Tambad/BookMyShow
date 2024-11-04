@@ -1,8 +1,7 @@
 package com.springacademy.bookmyshow.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,17 +9,20 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity
+@Entity(name="screens")
 public class Screen extends BaseModel
 {
     private String name;
 
     @OneToMany
+    @JoinColumn(name="screen_id")
     private List<Seat> seats;
 
-    private Feature features;
+    @ElementCollection
+    private List<Feature> features;
 
-  //  private Theatre theatre;
+//    @ManyToOne
+//    private Theatre theatre;
 
 }
 

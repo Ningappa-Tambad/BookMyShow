@@ -2,6 +2,7 @@ package com.springacademy.bookmyshow.models;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity
+@Entity(name="shows")
 public class Show extends BaseModel{
 
 
@@ -24,8 +25,8 @@ public class Show extends BaseModel{
      @ManyToOne
      private Screen screen;
 
-
-     private Feature features;
+     @ElementCollection
+     private List<Feature> features;
 
 }
 

@@ -1,9 +1,7 @@
 package com.springacademy.bookmyshow.models;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,19 +11,23 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity
+@Entity(name="bookings")
 public class Booking extends BaseModel {
 
     @ManyToOne
     private User user;
 
     @OneToMany
+    @JoinColumn(name="bookingid")
     private List<ShowSeat> showSeat;
 
+
+    @Enumerated(EnumType.ORDINAL)
     private BookingStatus bookingStatus;
     private int amount;
 
     @OneToMany
+    @JoinColumn(name="bookingid")
     private List<Payment> payments;
 
     private Date bookedAt;
